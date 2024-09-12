@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import WordBox from "./WordBox";
 import Spinner from "./Spinner";
 import Welcome from "./Welcome";
+import ErrorMessage from "./ErrorMessage";
 
 import Nav from "./Nav";
 
@@ -11,6 +12,7 @@ function App() {
     const [fetchedData, setFetchedData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [welcome, setWelcome] = useState(true);
+    const [error, setError] = useState(false);
 
     const searchWord = async (word, stateToUpdate) => {
         if (!word) return;
@@ -19,9 +21,17 @@ function App() {
             console.log(response.message);
         }
         const data = await response.json();
-        setWelcome(false);
-        stateToUpdate(data);
-        setLoading(false);
+        if(Array.isArray(data)){
+            setWelcome(false);
+            stateToUpdate(data);
+            setLoading(false);
+        }
+        else{
+            setWelcome(false);
+            stateToUpdate(data);
+            setLoading(false);
+            setError(true);
+        }
     };
 
     useEffect(() => {
@@ -36,6 +46,7 @@ function App() {
         e.preventDefault();
         if (searchTerm === "") return;
         setWelcome(false);
+        setError(false);
         setLoading(true);
         searchWord(searchTerm, setFetchedData); // Fetch new data on submit
     };
@@ -54,6 +65,7 @@ function App() {
                     <FaSearch className="text-[#9c6bca]" />
                 </form>
                 {welcome && <Welcome />}
+                {error && <ErrorMessage fetchedData={fetchedData} />}
                 {loading ? <Spinner loading={loading} /> : fetchedData.length > 0 && <WordBox fetchedData={fetchedData} />}
             </div>
         </div>
