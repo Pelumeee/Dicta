@@ -6,7 +6,7 @@ const Nav = ({ toggleTheme, dark }) => {
                 <FaBook className="inline-block text-3xl text-[#999999]" />
                 <h1 className="text-4xl font-bold text-[#999999]">Dicta</h1>
             </div>
-            <div className="w-[8%] flex items-center justify-between">
+            <div className="sm:w-[8%] w-[17%] flex items-center justify-between">
                 <div onClick={toggleTheme} className={`toggler ${dark && "dark"} relative w-[65%] py-3 rounded-[12px] bg-[#757575]  cursor-pointer`}>
                     <div className="toggle absolute w-[15px] h-[15px] rounded-[50%] bg-[#fefefe]"></div>
                 </div>
