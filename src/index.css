@@ -5,6 +5,34 @@
 body{
     font-family: "Poppins", sans-serif;
 }
+
+body, .dark {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+p, h1, span {
+    transition: color 0.5s ease;
+}
 ::marker{
     color: #a847f2;
+}
+
+
+.toggler{
+    transition: background-color 0.5s ease;
+}
+.toggler.dark{
+    background-color: #a847f2;
+}
+.toggler.dark .toggle{
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+.toggle{
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease, transform 0.3s ease;
+
 }

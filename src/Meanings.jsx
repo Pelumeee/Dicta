@@ -4,7 +4,7 @@ const Meanings = ({ meaning }) => {
     return (
         <div className="mb-10">
             <div className="w-full flex items-center gap-8 mb-6">
-                <span className="whitespace-nowrap  italic font-bold">{meaning.partOfSpeech}</span>
+                <span className="whitespace-nowrap dark:text-[#b1b1b1]  italic font-bold">{meaning.partOfSpeech}</span>
                 <div className="h-[1px] w-full bg-[#e8e8e8]"></div>
             </div>
             <div className="w-full">

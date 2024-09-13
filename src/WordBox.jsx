@@ -21,7 +21,7 @@ const WordBox = ({ fetchedData }) => {
         <div className="w-full">
             <div className="w-full mt-10 flex items-start justify-between mb-8">
                 <div>
-                    <h1 className="text-[#2b2b2b] sm:text-5xl text-2xl leading-8 font-black mb-10">{fetchedData[0].word}</h1>
+                    <h1 className="text-[#2b2b2b] dark:text-[#fefefe] sm:text-5xl text-2xl leading-8 font-black mb-10">{fetchedData[0].word}</h1>
                     <span className="text-[#a847f2] font-medium">{fetchedData[0].phonetic}</span>
                 </div>
                 <div onClick={handlePlay} className="sm:p-6 p-3 rounded-[50%] flex items-center justify-center bg-[#e9d0fa] cursor-pointer">

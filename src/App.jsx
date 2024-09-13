@@ -13,6 +13,7 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [welcome, setWelcome] = useState(true);
     const [error, setError] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
 
     const searchWord = async (word, stateToUpdate) => {
         if (!word) return;
@@ -21,12 +22,11 @@ function App() {
             console.log(response.message);
         }
         const data = await response.json();
-        if(Array.isArray(data)){
+        if (Array.isArray(data)) {
             setWelcome(false);
             stateToUpdate(data);
             setLoading(false);
-        }
-        else{
+        } else {
             setWelcome(false);
             stateToUpdate(data);
             setLoading(false);
@@ -50,11 +50,18 @@ function App() {
         setLoading(true);
         searchWord(searchTerm, setFetchedData); // Fetch new data on submit
     };
+
+    const themeToggler = () => {
+        setDarkMode(!darkMode);
+        // document.body.classList.toggle("dark-mode");
+        // localStorage.setItem("darkMode", darkMode);
+    };
+
     return (
-        <div className="flex justify-center">
+        <div className={`flex ${darkMode && "dark bg-[#050505]"} justify-center min-h-[100vh]`}>
             <div className="lg:w-[50%] w-[90%] flex flex-col items-center gap-4">
-                <Nav />
-                <form onSubmit={handleSubmit} className="w-full flex items-center justify-between bg-[#f4f4f4] py-6 px-4 rounded-[8px]">
+                <Nav toggleTheme={themeToggler} dark={darkMode} />
+                <form onSubmit={handleSubmit} className="w-full flex items-center justify-between bg-[#f4f4f4] dark:bg-[#1f1f1f] py-6 px-4 rounded-[8px]">
                     <input
                         type="text"
                         value={searchTerm}
